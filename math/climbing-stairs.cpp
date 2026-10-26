@@ -1,7 +1,7 @@
 class Solution {
 public:
+    vector<int>dp(n+1,0);
     int climbStairs(int n) {
-        vector<int>dp(n+1,0);
         if(n==1){
             return 1;
         }
