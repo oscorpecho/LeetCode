@@ -26,11 +26,9 @@ public:
         }
         int L=height(root->left);
         int R=height(root->right);
-        if(abs(L-R)<=1 && isBalanced(root->left) && isBalanced(root->right)){
+        if(abs(L-R)<=1&&isBalanced(root->left)&&isBalanced(root->right)){
             return true;
         }
-        else{
-            return false;
-        }
+        return false;
     }
 };
