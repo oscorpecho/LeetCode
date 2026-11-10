@@ -2,34 +2,33 @@ class Solution {
 public:
     string minWindow(string s, string t) {
         unordered_map<char,int>mp;
-        if(s.size()<t.size()){
+        int minlen=INT_MAX;
+        int start=0;
+        if(t.size()>s.size()){
             return "";
         }
-        int countfreq=t.size(),minlen=INT_MAX,start=0;
-        for(char c:t){
-            mp[c]++;
+        for(int i=0;i<t.size();i++){
+            mp[t[i]]++;
         }
-        int l=0,r=0;
-        while(r<s.size()){
+        int count=t.size();
+        int l=0;
+        for(int r=0;r<s.size();r++){
             if(mp[s[r]]>0){
-                countfreq--;
+                count--;
             }
             mp[s[r]]--;
-        while(countfreq==0){
-            if(r-l+1<minlen){
-                start=l;
-                minlen=r-l+1;
+            while(count==0){
+                int len=r-l+1;
+                if(len<minlen){
+                    minlen=len;
+                    start=l;
+                }
+                mp[s[l]]++;
+                if(mp[s[l]]>0){
+                    count++;
+                }
+                l++;
             }
-            mp[s[l]]++;
-            if(mp[s[l]]>0){
-                countfreq++;
-            }
-            l++;
-        }
-        r++;
-        }
-        if(minlen==INT_MAX){
-            return "";
         }
         return s.substr(start,minlen);
     }
