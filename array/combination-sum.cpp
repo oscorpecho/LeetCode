@@ -10,6 +10,9 @@ void backtrack(int start,int remaining, vector<int>&path){
         res.push_back(path);
     }
     for(int i=start;i<nums.size();i++){
+        if(i>start && nums[i]==nums[i-1]){
+            continue;
+        }
         path.push_back(nums[i]);
         backtrack(i,remaining-nums[i],path);
         path.pop_back();
