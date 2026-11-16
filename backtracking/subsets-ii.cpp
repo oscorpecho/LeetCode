@@ -13,6 +13,7 @@ void backtrack(int start,vector<int>&path,vector<int>&nums){
     }
 }
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
         vector<int>path;
         backtrack(0,path,nums);
         return res;
