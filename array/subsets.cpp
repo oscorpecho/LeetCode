@@ -1,19 +1,17 @@
 class Solution {
 public:
-    vector<int>curr;
-    vector<vector<int>>ans;
-    vector<int> numscopy;
-    void backtrack(int start){
-        ans.push_back(curr);
-        for(int i=start;i<numscopy.size();i++){
-            curr.push_back(numscopy[i]);
-            backtrack(i+1);
-            curr.pop_back();        
-        }
-    }
+vector<vector<int>>res;
+void backtrack(int start,vector<int>path,vector<int>&nums){
+    res.push_back(path);
+    for(int i=start;i<nums.size();i++){
+    path.push_back(nums[i]);
+    backtrack(i+1,path,nums);
+    path.pop_back();
+}
+}
     vector<vector<int>> subsets(vector<int>& nums) {
-        numscopy=nums;
-        backtrack(0);
-        return ans;
+        vector<int>path;
+        backtrack(0,path,nums);
+        return res;
     }
 };
